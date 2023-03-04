@@ -1,5 +1,15 @@
+type Query {
+    getSales(startDateTime: String, endDateTime: String): [Sale]!
+}
+
 type Mutation {
     makePayment(paymentRequest: PaymentRequest): PaymentResponse
+}
+
+type Sale {
+    datetime: String!
+    sales: String!
+    points: Int!
 }
 
 type PaymentResponse {
