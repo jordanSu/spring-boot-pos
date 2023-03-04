@@ -1,0 +1,25 @@
+type Mutation {
+    makePayment(paymentRequest: PaymentRequest): PaymentResponse
+}
+
+type PaymentResponse {
+    finalPrice: String!
+    points: Int!
+}
+
+input PaymentRequest {
+    price: String!
+    priceModifier: Float!
+    paymentMethod: PaymentMethod!
+    datetime: String!
+}
+
+enum PaymentMethod {
+    CASH
+    CASH_ON_DELIVERY
+    VISA
+    MASTERCARD
+    AMEX
+    JCB
+}
+
