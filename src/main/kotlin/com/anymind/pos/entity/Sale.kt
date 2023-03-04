@@ -9,7 +9,7 @@ import java.time.Instant
 
 @Entity
 @Table(name = "sale")
-class Sale(
+data class Sale(
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     val id: String?=null,
     val datetime: Instant,

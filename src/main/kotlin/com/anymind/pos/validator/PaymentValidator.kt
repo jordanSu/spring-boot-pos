@@ -21,7 +21,7 @@ object PaymentValidator {
             PaymentMethod.CASH -> priceModifier >= BigDecimal("0.9") && priceModifier <= BigDecimal("1")
             PaymentMethod.CASH_ON_DELIVERY -> priceModifier >= BigDecimal("1") && priceModifier <= BigDecimal("1.02")
             PaymentMethod.VISA, PaymentMethod.MASTERCARD, PaymentMethod.JCB -> priceModifier >= BigDecimal("0.95") && priceModifier <= BigDecimal("1")
-            PaymentMethod.AMEX -> priceModifier >= BigDecimal("0.98") && priceModifier <= BigDecimal("1")
+            PaymentMethod.AMEX -> priceModifier >= BigDecimal("0.98") && priceModifier <= BigDecimal("1.01")
         }
         if (!isValid)
             throw PosBadRequestException("priceModifier value invalid with given paymentMethod")
