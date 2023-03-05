@@ -3,8 +3,6 @@ package com.anymind.pos.validator
 import com.anymind.pos.dto.PaymentRequest
 import com.anymind.pos.enums.PaymentMethod
 import com.anymind.pos.exception.PosBadRequestException
-import org.springframework.http.HttpStatus
-import org.springframework.web.server.ResponseStatusException
 import java.math.BigDecimal
 import java.time.Instant
 import java.time.format.DateTimeFormatter
