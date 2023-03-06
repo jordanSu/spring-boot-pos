@@ -1,0 +1,7 @@
+query SalesQuery ($startDateTime: String!, $endDateTime: String!) {
+    sales(startDateTime: $startDateTime, endDateTime: $endDateTime) {
+        datetime
+        sales
+        points
+    }
+}

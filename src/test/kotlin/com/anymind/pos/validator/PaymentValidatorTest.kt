@@ -1,9 +1,8 @@
-package com.anymind.pos.unit_test
+package com.anymind.pos.validator
 
 import com.anymind.pos.dto.PaymentRequest
 import com.anymind.pos.enums.PaymentMethod
 import com.anymind.pos.exception.PosBadRequestException
-import com.anymind.pos.validator.PaymentValidator
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -16,9 +15,9 @@ class PaymentValidatorTest {
     val paymentRequest = PaymentRequest("200.00", BigDecimal(0.95), PaymentMethod.CASH, "2023-03-05T13:00:00Z")
 
     @Nested
-    inner class validatePaymentRequest {
+    inner class ValidatePaymentRequest {
         @Nested
-        inner class validatePrice {
+        inner class ValidatePrice {
             @Test
             fun normalCase() {
                 assertDoesNotThrow { PaymentValidator.validatePaymentRequest(paymentRequest) }
@@ -32,7 +31,7 @@ class PaymentValidatorTest {
         }
 
         @Nested
-        inner class validateDatetime {
+        inner class ValidateDatetime {
             @Test
             fun normalCase() {
                 assertDoesNotThrow { PaymentValidator.validatePaymentRequest(paymentRequest) }
@@ -52,7 +51,7 @@ class PaymentValidatorTest {
         }
 
         @Nested
-        inner class validatePriceModifier {
+        inner class ValidatePriceModifier {
             @ParameterizedTest
             @CsvSource(value = [
                 "CASH,0.9",
@@ -60,7 +59,7 @@ class PaymentValidatorTest {
                 "VISA,0.95",
                 "MASTERCARD,1",
                 "AMEX,1.01",
-                "JCB,0.95",
+                "JCB,0.95"
             ])
             fun normalCase(paymentMethod: String, priceModifier: String) {
                 val normalRequest = paymentRequest.copy(
@@ -77,12 +76,12 @@ class PaymentValidatorTest {
                 "VISA,0.93",
                 "MASTERCARD,0.94",
                 "AMEX,0.97",
-                "JCB,0.94",
+                "JCB,0.94"
             ])
-            fun invalidCaseShouldReturnBadRequest(paymentMethod: String, priceModifier: String) {
+            fun invalidCaseShouldReturnBadRequest(paymentMethod: PaymentMethod, priceModifier: BigDecimal) {
                 val invalidRequest = paymentRequest.copy(
-                    priceModifier = BigDecimal(priceModifier),
-                    paymentMethod = PaymentMethod.valueOf(paymentMethod)
+                    priceModifier = priceModifier,
+                    paymentMethod = paymentMethod
                 )
                 assertThrows<PosBadRequestException> { PaymentValidator.validatePaymentRequest(invalidRequest) }
             }
@@ -91,7 +90,7 @@ class PaymentValidatorTest {
 
 
     @Nested
-    inner class validateStartDateTimeAndEndDateTime {
+    inner class ValidateStartDateTimeAndEndDateTime {
         @Test
         fun normalCase() {
             assertDoesNotThrow {
