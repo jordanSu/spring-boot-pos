@@ -35,7 +35,9 @@ $ cd spring-boot-pos
 $ ./mvnw spring-boot:run
 ```
 
-4. Open web browser and go to `http://localhost:8080/graphiql`, and have fun!
+4. Have fun with this project by:
+- Open web browser and go to `http://localhost:8080/graphiql`
+- Send GraphQL query to `localhost:8080/graphql`
 
 #### Method 2 : `docker-compose`
 ##### Requirements
@@ -47,7 +49,9 @@ $ ./mvnw spring-boot:run
 $ docker compose up -d
 ```
 
-2. Open web browser and go to `http://localhost:8080/graphiql`, and have fun!
+2. Have fun with this project by:
+- Open web browser and go to `http://localhost:8080/graphiql`
+- Send GraphQL query to `localhost:8080/graphql`
 
 ## Sample GraphQL query
 Below are some sample query and variables that can test this application:
